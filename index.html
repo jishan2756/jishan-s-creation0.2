@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#17102f">
+<title>তুমি আসলে কেমন মানুষ?</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Noto Sans Bengali","Hind Siliguri",sans-serif;background:radial-gradient(circle at top,#493078,#17102f 65%);color:white;display:flex;justify-content:center;align-items:center;padding:18px;overflow-x:hidden}
+.container{width:100%;max-width:540px;background:#ffffff12;border:1px solid #ffffff25;backdrop-filter:blur(16px);border-radius:26px;padding:28px 23px;box-shadow:0 20px 70px #0006;text-align:center;animation:appear .6s ease}
+@keyframes appear{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+.logo{font-size:52px;margin-bottom:8px}
+h1{font-size:clamp(24px,6vw,34px);margin:8px 0;color:#ffdc79}
+p{line-height:1.8;color:#eee}
+button{border:0;border-radius:14px;padding:14px 19px;font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;transition:.25s;width:100%;margin-top:12px}
+button:hover{transform:translateY(-3px) scale(1.02);filter:brightness(1.12)}
+button:active{transform:scale(.97)}
+.primary{background:linear-gradient(100deg,#ffbd59,#ff6588);color:#28112f;box-shadow:0 6px 20px #ff658844}
+.secondary{background:#ffffff18;color:white;border:1px solid #ffffff30}
+.rules{background:#ffffff10;border-radius:16px;padding:15px;text-align:left;margin:20px 0;font-size:14px}
+.rules li{margin:9px 0;line-height:1.6}
+.progress{height:9px;background:#ffffff22;border-radius:20px;margin:20px 0;overflow:hidden}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#ffbd59,#ff6588);transition:.4s}
+.question{font-size:23px;font-weight:bold;margin:25px 0;line-height:1.7}
+.option{background:#ffffff15;color:white;border:1px solid #ffffff30;text-align:left;padding:15px;border-radius:14px;margin:10px 0;font-size:15px}
+.option:hover{background:#ffbd5933;border-color:#ffbd59}
+.option.selected{background:#ffbd5940;border-color:#ffbd59}
+.small{font-size:13px;color:#cfc3e7}
+.result-emoji{font-size:76px;margin:15px}
+.result-title{font-size:27px;color:#ffda79}
+.result-box{padding:20px;background:#ffffff12;border-radius:18px;margin:20px 0}
+.hidden{display:none}
+.footer{margin-top:25px;font-size:12px;color:#c6b9de;letter-spacing:1px}
+.confetti{position:fixed;top:-20px;font-size:22px;pointer-events:none;animation:fall 3s linear forwards;z-index:5}
+@keyframes fall{to{transform:translateY(110vh) rotate(700deg);opacity:0}}
+@media(max-width:380px){.container{padding:20px 15px}.question{font-size:20px}button{font-size:14px}}
+</style>
+</head>
+<body>
+<main class="container">
+<div id="start">
+<div class="logo">🧠🎭</div>
+<h1>তুমি আসলে কেমন মানুষ?</h1>
+<p>নিজেকে কতটা চেনো? 😏<br>চলো, মজার কিছু প্রশ্নের মাধ্যমে তোমার আসল ব্যক্তিত্ব খুঁজে বের করি!</p>
+<div class="rules">
+<strong>📜 খেলার নিয়মাবলি</strong>
+<ul>
+<li>মোট ৮টি মজার প্রশ্নের উত্তর দিতে হবে।</li>
+<li>প্রতিটি প্রশ্নে নিজের পছন্দের উত্তরটি বেছে নাও।</li>
+<li>সৎভাবে উত্তর দাও, চালাকি করলে কিন্তু ধরা পড়ে যাবে! 😂</li>
+<li>সব উত্তর শেষে তোমার ব্যক্তিত্বের মজার ফলাফল দেখতে পাবে।</li>
+<li>সঠিক বা ভুল উত্তর বলে কিছু নেই।</li>
+</ul>
+</div>
+<button class="primary" onclick="begin()">🚀 খেলা শুরু করো</button>
+</div>
+
+<div id="game" class="hidden">
+<div class="small" id="counter">প্রশ্ন ১ / ৮</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="question" id="question"></div>
+<div id="options"></div>
+<button class="primary" id="next" onclick="nextQuestion()" disabled>পরবর্তী প্রশ্ন ➜</button>
+</div>
+
+<div id="result" class="hidden">
+<div class="logo">🎉</div>
+<h1>তোমার ফলাফল!</h1>
+<div class="result-box">
+<div class="result-emoji" id="emoji"></div>
+<div class="result-title" id="resultTitle"></div>
+<p id="description"></p>
+</div>
+<p id="roast"></p>
+<button class="primary" onclick="share()">📲 ফলাফল শেয়ার করো</button>
+<button class="secondary" onclick="restart()">🔄 আবার খেলো</button>
+</div>
+
+<div class="footer">Presented by Jishan ❤️</div>
+</main>
+
+<script>
+const questions=[
+{q:"১. হঠাৎ তোমার হাতে ১০ লাখ টাকা চলে এলো! কী করবে?",a:[["🛍️ শপিং করে শেষ!","বিলাসী"],["🏦 ব্যাংকে জমাবো","বুদ্ধিমান"],["🍕 বন্ধুদের খাওয়াবো","বন্ধুবৎসল"],["😴 ঘুমিয়ে থাকব","অলস"]]},
+{q:"২. রাত ৩টায় ঘুম আসছে না। কী করবে?",a:[["📱 রিলস দেখব","অলস"],["🤔 জীবনের হিসাব করব","চিন্তাবিদ"],["🍜 কিছু খাব","খাদক"],["🎮 গেম খেলব","বিলাসী"]]},
+{q:"৩. কেউ তোমাকে বলে, তুমি অনেক সুন্দর!",a:[["😎 জানি তো!","আত্মবিশ্বাসী"],["🙈 লজ্জা পাব","লাজুক"],["😂 মিথ্যা বলো না!","রসিক"],["❤️ ধন্যবাদ দেব","ভদ্র"]]},
+{q:"৪. পরীক্ষার আগের রাতে তোমার অবস্থা?",a:[["📚 সারারাত পড়ব","পরিশ্রমী"],["🤲 আল্লাহ ভরসা","ভাগ্যনির্ভর"],["😴 ঘুমাব","অলস"],["👀 বন্ধুর খাতা দেখব","চালাক"]]},
+{q:"৫. তোমার ক্রাশ অনলাইনে এসেছে!",a:[["💬 সঙ্গে সঙ্গে মেসেজ","রোমান্টিক"],["👀 চুপচাপ নজর রাখব","লাজুক"],["😎 পাত্তা দেব না","আত্মবিশ্বাসী"],["😂 স্টোরিতে রিঅ্যাক্ট","চালাক"]]},
+{q:"৬. বন্ধু বলে, চল ঘুরতে যাই!",a:[["🚀 এখনই চল","দুঃসাহসী"],["💰 টাকা আছে?","বুদ্ধিমান"],["😴 পরে যাব","অলস"],["🤝 সবাইকে নিয়ে যাব","বন্ধুবৎসল"]]},
+{q:"৭. তোমাকে কেউ বিরক্ত করলে কী করো?",a:[["😡 রেগে যাই","রাগী"],["😂 হাসি দিয়ে উড়িয়ে দিই","রসিক"],["🤫 চুপ থাকি","লাজুক"],["😈 প্রতিশোধের প্ল্যান","চালাক"]]},
+{q:"৮. নিজের সম্পর্কে তোমার ধারণা কী?",a:[["👑 আমি বস!","আত্মবিশ্বাসী"],["🥰 আমি অনেক ভালো","ভদ্র"],["🤪 আমি একটু পাগল","রসিক"],["🧠 আমি জিনিয়াস","চিন্তাবিদ"]]}
+];
+const profiles={
+"বিলাসী":["💎","রাজকীয় বাবু","তোমার জীবনে আরাম-আয়েশই সব! টাকা আসলে খরচের রাস্তা নিজেই খুঁজে নাও।","তোমার মানিব্যাগ তোমাকে দেখে প্রতিদিন কাঁদে! 😂"],
+"বুদ্ধিমান":["🧠","চালাক চতুর","তুমি সবকিছু হিসাব করে করো। তোমার মাথায় সবসময় কয়েকটা প্ল্যান প্রস্তুত থাকে!","তোমাকে ঠকাতে গেলে আগে নিজের বুদ্ধি আপডেট করতে হবে! 🤣"],
+"বন্ধুবৎসল":["🤗","বন্ধুপ্রেমী","বন্ধুদের জন্য তুমি সব করতে পারো। তোমার কাছে বন্ধুত্বই সবচেয়ে বড় সম্পদ!","তোমার বন্ধুরা ভাগ্যবান, তবে তোমার পকেট দুর্ভাগা! 😂"],
+"অলস":["🛌","ঘুমের সম্রাট","কাজ পরে হবে, আগে একটু বিশ্রাম! তোমার জীবনের মূলমন্ত্রই হচ্ছে আরাম।","তোমাকে ডাকতে গেলে অ্যালার্ম ঘড়িরও ছুটি লাগে! 🤣"],
+"চিন্তাবিদ":["🤔","মহাজ্ঞানী দার্শনিক","তোমার মাথায় সবসময় হাজারটা চিন্তা ঘোরে। সাধারণ ব্যাপারেও গভীর দর্শন খুঁজে পাও!","এত চিন্তা করো যে চিন্তাও তোমাকে নিয়ে চিন্তা করে! 😂"],
+"রোমান্টিক":["❤️","প্রেমের রাজা","তোমার হৃদয় অনেক নরম। ভালোবাসার জন্য তুমি সবসময় প্রস্তুত!","তোমার প্রেমের গল্পে নায়ক আছে, শুধু নায়িকার পরিচয় অজানা! 🤣"],
+"লাজুক":["🙈","লাজুক নবাব","তুমি শান্ত স্বভাবের মানুষ। মনের কথা মুখে বলতে একটু সময় লাগে!","তোমার ক্রাশ বুড়ো হয়ে যাবে, তবুও তুমি হাই বলতে পারবে না! 😂"],
+"আত্মবিশ্বাসী":["😎","আত্মবিশ্বাসের বস","তুমি নিজেকে ভালোবাসো এবং নিজের সিদ্ধান্তে বিশ্বাস রাখো!","আয়নার সামনে দাঁড়ালে আয়নাও তোমাকে স্যালুট দেয়! 🤣"],
+"রসিক":["🤪","কমেডির কারখানা","তুমি যেখানে যাও সেখানেই হাসির পরিবেশ তৈরি হয়!","তোমার সিরিয়াস কথাও মানুষ জোকস মনে করে! 😂"],
+"ভদ্র":["🌸","ভদ্রতার রাজপুত্র","তুমি সুন্দর মনের মানুষ। অন্যদের সম্মান করতে জানো!","তোমার মতো ভালো মানুষ দেখে দুষ্টু লোকেরাও লজ্জা পায়! ❤️"],
+"পরিশ্রমী":["🔥","পরিশ্রমী যোদ্ধা","তুমি নিজের লক্ষ্যে পৌঁছাতে পরিশ্রম করতে জানো!","তোমার বিশ্রাম নেওয়ার জন্যও আলাদা একটা পরিকল্পনা লাগে! 😂"],
+"ভাগ্যনির্ভর":["🍀","ভাগ্যের খেলোয়াড়","তুমি বিশ্বাস করো, জীবনে ভাগ্যেরও বড় ভূমিকা আছে!","পড়াশোনার বদলে ভাগ্যের ওপর নির্ভর করলে কিন্তু বিপদ! 🤣"],
+"চালাক":["😈","গোপন মাস্টারমাইন্ড","তুমি পরিস্থিতি বুঝে চাল দিতে জানো। সবাই তোমার পরবর্তী পদক্ষেপ বুঝতে পারে না!","তোমার মাথায় নিশ্চয়ই গোপন ষড়যন্ত্রের মিটিং চলে! 😂"],
+"দুঃসাহসী":["🚀","অ্যাডভেঞ্চার কিং","নতুন অভিজ্ঞতা আর চ্যালেঞ্জ নিতে তুমি ভালোবাসো!","তোমার সঙ্গে ঘুরতে গেলে বীমা করে যাওয়া উচিত! 🤣"],
+"রাগী":["🌋","জ্বলন্ত আগ্নেয়গিরি","তোমার রাগ দ্রুত ওঠে, তবে মনটা হয়তো ততটাই নরম!","তোমার রাগ দেখলে মরিচও মিষ্টি হয়ে যায়! 😂"]
+};
+let index=0,answers=[],selected=null;
+let audio;
+function sound(freq=500,type="sine"){
+try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();if(audio.state==="suspended")audio.resume();let o=audio.createOscillator(),g=audio.createGain();o.connect(g);g.connect(audio.destination);o.frequency.value=freq;o.type=type;g.gain.setValueAtTime(.12,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.22);o.start();o.stop(audio.currentTime+.23)}catch(e){}
+}
+function begin(){sound(650);document.getElementById("start").classList.add("hidden");document.getElementById("game").classList.remove("hidden");showQuestion()}
+function showQuestion(){
+selected=null;
+let q=questions[index];
+document.getElementById("counter").textContent=`প্রশ্ন ${index+1} / ${questions.length}`;
+document.getElementById("bar").style.width=(index/questions.length*100)+"%";
+document.getElementById("question").textContent=q.q;
+document.getElementById("next").disabled=true;
+document.getElementById("next").textContent=index===questions.length-1?"ফলাফল দেখো 🎉":"পরবর্তী প্রশ্ন ➜";
+let html="";
+q.a.forEach((a,i)=>html+=`<button class="option" onclick="choose(${i},this)">${a[0]}</button>`);
+document.getElementById("options").innerHTML=html;
+}
+function choose(i,el){
+selected=i;sound(450+i*100);
+document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
+el.classList.add("selected");
+document.getElementById("next").disabled=false;
+}
+function nextQuestion(){
+if(selected===null)return;
+answers.push(questions[index].a[selected][1]);
+sound(600);
+index++;
+if(index<questions.length)showQuestion();else showResult();
+}
+function showResult(){
+document.getElementById("game").classList.add("hidden");
+document.getElementById("result").classList.remove("hidden");
+let count={};
+answers.forEach(x=>count[x]=(count[x]||0)+1);
+let winner=Object.keys(count).sort((a,b)=>count[b]-count[a])[0];
+let p=profiles[winner];
+document.getElementById("emoji").textContent=p[0];
+document.getElementById("resultTitle").textContent=p[1];
+document.getElementById("description").textContent=p[2];
+document.getElementById("roast").textContent=p[3];
+document.getElementById("bar").style.width="100%";
+confetti();sound(800);
+window.finalResult=`আমার ব্যক্তিত্ব: ${p[1]} ${p[0]}\n${p[2]}\n${p[3]}\nPresented by Jishan`;
+}
+function confetti(){
+const icons=["🎉","✨","💖","🎊","⭐","😂"];
+for(let i=0;i<35;i++){let e=document.createElement("div");e.className="confetti";e.textContent=icons[Math.random()*icons.length|0];e.style.left=Math.random()*100+"vw";e.style.animationDelay=Math.random()*1.5+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),4500)}
+}
+function share(){
+let t=window.finalResult;
+if(navigator.share)navigator.share({title:"আমার ব্যক্তিত্বের ফলাফল",text:t}).catch(()=>copyText(t));
+else copyText(t);
+}
+function copyText(t){
+if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(()=>alert("ফলাফল কপি হয়েছে! 🎉")).catch(()=>fallback(t));
+else fallback(t);
+}
+function fallback(t){
+let a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove();alert("ফলাফল কপি হয়েছে! 🎉");
+}
+function restart(){index=0;answers=[];selected=null;document.getElementById("result").classList.add("hidden");document.getElementById("game").classList.remove("hidden");showQuestion();sound(500)}
+</script>
+</body>
+</html>
