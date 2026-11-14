@@ -1,177 +1,876 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name="theme-color" content="#17102f">
-<title>তুমি আসলে কেমন মানুষ?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100e24">
+<meta name="description" content="হাসির আড্ডা - বাংলাদেশের মজার বাংলা গেমিং জোন।">
+<title>হাসির আড্ডা | Created by Jishan. Insta: @mrx.896745</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:"Noto Sans Bengali","Hind Siliguri",sans-serif;background:radial-gradient(circle at top,#493078,#17102f 65%);color:white;display:flex;justify-content:center;align-items:center;padding:18px;overflow-x:hidden}
-.container{width:100%;max-width:540px;background:#ffffff12;border:1px solid #ffffff25;backdrop-filter:blur(16px);border-radius:26px;padding:28px 23px;box-shadow:0 20px 70px #0006;text-align:center;animation:appear .6s ease}
-@keyframes appear{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-.logo{font-size:52px;margin-bottom:8px}
-h1{font-size:clamp(24px,6vw,34px);margin:8px 0;color:#ffdc79}
-p{line-height:1.8;color:#eee}
-button{border:0;border-radius:14px;padding:14px 19px;font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;transition:.25s;width:100%;margin-top:12px}
-button:hover{transform:translateY(-3px) scale(1.02);filter:brightness(1.12)}
-button:active{transform:scale(.97)}
-.primary{background:linear-gradient(100deg,#ffbd59,#ff6588);color:#28112f;box-shadow:0 6px 20px #ff658844}
-.secondary{background:#ffffff18;color:white;border:1px solid #ffffff30}
-.rules{background:#ffffff10;border-radius:16px;padding:15px;text-align:left;margin:20px 0;font-size:14px}
-.rules li{margin:9px 0;line-height:1.6}
-.progress{height:9px;background:#ffffff22;border-radius:20px;margin:20px 0;overflow:hidden}
-.bar{height:100%;width:0;background:linear-gradient(90deg,#ffbd59,#ff6588);transition:.4s}
-.question{font-size:23px;font-weight:bold;margin:25px 0;line-height:1.7}
-.option{background:#ffffff15;color:white;border:1px solid #ffffff30;text-align:left;padding:15px;border-radius:14px;margin:10px 0;font-size:15px}
-.option:hover{background:#ffbd5933;border-color:#ffbd59}
-.option.selected{background:#ffbd5940;border-color:#ffbd59}
-.small{font-size:13px;color:#cfc3e7}
-.result-emoji{font-size:76px;margin:15px}
-.result-title{font-size:27px;color:#ffda79}
-.result-box{padding:20px;background:#ffffff12;border-radius:18px;margin:20px 0}
-.hidden{display:none}
-.footer{margin-top:25px;font-size:12px;color:#c6b9de;letter-spacing:1px}
-.confetti{position:fixed;top:-20px;font-size:22px;pointer-events:none;animation:fall 3s linear forwards;z-index:5}
-@keyframes fall{to{transform:translateY(110vh) rotate(700deg);opacity:0}}
-@media(max-width:380px){.container{padding:20px 15px}.question{font-size:20px}button{font-size:14px}}
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap');
+
+:root{
+--bg:#100e24;
+--card:#211d40;
+--pink:#ff4fa3;
+--purple:#9b72ff;
+--yellow:#ffdc63;
+--text:#fff;
+--muted:#c9c4e6;
+--transition:all .3s cubic-bezier(.2,.8,.2,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:'Hind Siliguri',sans-serif;
+min-height:100vh;
+overflow-x:hidden;
+-webkit-tap-highlight-color:transparent;
+}
+
+button{
+font-family:inherit;
+cursor:pointer;
+border:0;
+transition:var(--transition);
+}
+
+button:focus-visible{
+outline:3px solid var(--yellow);
+outline-offset:4px;
+}
+
+header{
+width:100%;
+min-height:75px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px clamp(16px,6vw,90px);
+background:#191633;
+border-bottom:1px solid #39315e;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.logo{
+font-size:clamp(20px,3vw,27px);
+font-weight:800;
+color:var(--yellow);
+}
+
+.creator{
+font-family:Arial,sans-serif;
+font-size:14px;
+color:#c5b8ff;
+}
+
+.hero{
+text-align:center;
+padding:clamp(45px,8vw,90px) 18px;
+background:
+radial-gradient(circle at 20% 20%,#7135aa55,transparent 35%),
+radial-gradient(circle at 80% 50%,#ff4fa344,transparent 35%);
+}
+
+.tag{
+background:#ffffff18;
+padding:8px 18px;
+border-radius:30px;
+display:inline-block;
+margin-bottom:22px;
+color:var(--yellow);
+}
+
+.hero h1{
+font-size:clamp(32px,6vw,68px);
+line-height:1.3;
+font-weight:800;
+}
+
+.hero h1 span{color:var(--pink)}
+
+.hero p{
+color:var(--muted);
+margin:18px auto;
+max-width:600px;
+font-size:clamp(14px,2vw,18px);
+line-height:1.8;
+}
+
+.main-btn{
+background:linear-gradient(100deg,var(--pink),var(--purple));
+color:white;
+padding:14px 30px;
+border-radius:30px;
+font-size:17px;
+font-weight:700;
+margin-top:12px;
+box-shadow:0 5px 25px #ff4fa344;
+}
+
+.main-btn:hover{
+transform:translateY(-5px) scale(1.06);
+box-shadow:0 12px 35px #ff4fa377;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:clamp(15px,5vw,45px);
+flex-wrap:wrap;
+margin-top:35px;
+}
+
+.stat{color:#d5ccff;font-size:14px}
+.stat strong{
+display:block;
+color:var(--yellow);
+font-size:clamp(20px,4vw,25px);
+}
+
+.section{
+width:min(1150px,100%);
+margin:auto;
+padding:clamp(30px,5vw,55px) clamp(14px,3vw,25px);
+}
+
+.section-title{font-size:clamp(23px,4vw,32px);margin-bottom:8px}
+.section-desc{color:#aaa3ca;margin-bottom:25px}
+
+.game-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));
+gap:clamp(12px,2.5vw,22px);
+}
+
+.game-card{
+background:linear-gradient(145deg,#29234e,#1b1835);
+border:1px solid #39315e;
+border-radius:20px;
+padding:clamp(18px,3vw,27px);
+transition:var(--transition);
+position:relative;
+overflow:hidden;
+}
+
+.game-card:hover{
+transform:translateY(-8px);
+border-color:var(--pink);
+box-shadow:0 15px 40px #0006,0 0 20px #ff4fa322;
+}
+
+.game-icon{
+font-size:clamp(35px,5vw,50px);
+margin-bottom:15px;
+transition:var(--transition);
+}
+
+.game-card:hover .game-icon{transform:scale(1.2) rotate(-8deg)}
+
+.game-card h3{font-size:21px;margin-bottom:8px}
+.game-card p{color:#aaa3ca;font-size:14px;line-height:1.7;min-height:48px}
+
+.play-btn{
+background:var(--pink);
+color:white;
+padding:11px 23px;
+border-radius:25px;
+margin-top:17px;
+font-weight:700;
+}
+
+.game-card:nth-child(even) .play-btn{background:var(--purple)}
+
+.play-btn:hover,.action-btn:hover{
+transform:translateY(-4px) scale(1.06);
+box-shadow:0 8px 25px #ff4fa366;
+}
+
+button:active{transform:scale(.94)}
+
+#gameArea{
+display:none;
+width:min(800px,calc(100% - 28px));
+margin:25px auto 60px;
+padding:clamp(15px,4vw,30px);
+background:#211d40;
+border:1px solid #48406f;
+border-radius:22px;
+min-height:300px;
+animation:enter .4s ease;
+}
+
+@keyframes enter{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.game-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
+.game-head h2{font-size:clamp(19px,4vw,27px)}
+.game-content{text-align:center;width:100%}
+.game-content h2{font-size:clamp(20px,4vw,29px);margin-bottom:15px}
+.game-content p{color:var(--muted);margin:12px 0;line-height:1.7}
+
+.back-btn{
+background:#403864;
+color:white;
+padding:10px 18px;
+border-radius:20px;
+}
+
+.back-btn:hover{background:var(--pink);transform:translateX(-4px)}
+
+.action-btn{
+background:linear-gradient(100deg,var(--pink),var(--purple));
+color:white;
+padding:12px 25px;
+border-radius:12px;
+margin:8px;
+font-size:16px;
+font-weight:700;
+}
+
+.option{
+display:block;
+width:min(100%,450px);
+margin:10px auto;
+padding:13px;
+background:#37305d;
+color:white;
+border:1px solid #574d85;
+border-radius:12px;
+font-size:16px;
+}
+
+.option:hover:not(:disabled){
+background:#6745a0;
+border-color:var(--pink);
+transform:translateY(-3px);
+box-shadow:0 6px 20px #0004;
+}
+
+.option:disabled{opacity:.7;cursor:not-allowed}
+
+.input{
+background:#17142e;
+color:white;
+border:1px solid #695a9e;
+padding:13px;
+border-radius:10px;
+font-size:17px;
+width:min(100%,280px);
+text-align:center;
+margin:12px;
+outline:none;
+}
+
+.input:focus{
+border-color:var(--pink);
+box-shadow:0 0 15px #ff4fa344;
+}
+
+.result{
+color:var(--yellow);
+font-size:clamp(17px,3vw,21px);
+font-weight:700;
+margin:20px 0;
+overflow-wrap:anywhere;
+}
+
+.memory-grid{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:clamp(5px,2vw,12px);
+width:min(100%,390px);
+margin:20px auto;
+}
+
+.memory-card{
+width:100%;
+aspect-ratio:1;
+border-radius:12px;
+background:#44376f;
+color:white;
+font-size:clamp(20px,5vw,32px);
+}
+
+.memory-card:hover:not(.matched){background:#6750a5;transform:scale(1.05)}
+.memory-card.matched{background:#267c67}
+
+.target{
+display:inline-flex;
+justify-content:center;
+align-items:center;
+width:clamp(65px,15vw,95px);
+aspect-ratio:1;
+border-radius:50%;
+background:#ff4fa3;
+font-size:clamp(25px,6vw,40px);
+margin:20px;
+}
+
+.target:hover{transform:scale(1.15) rotate(10deg);box-shadow:0 0 25px #ff4fa399}
+
+.board{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,85px));
+justify-content:center;
+gap:clamp(5px,2vw,10px);
+margin:20px auto;
+}
+
+.cell{
+width:100%;
+aspect-ratio:1;
+background:#403864;
+color:white;
+border-radius:12px;
+font-size:clamp(25px,7vw,38px);
+}
+
+.cell:hover{background:#6745a0;transform:scale(1.05)}
+
+footer{
+text-align:center;
+padding:30px 15px;
+background:#191633;
+color:#aaa3ca;
+margin-top:30px;
+line-height:1.8;
+}
+
+footer strong{color:var(--yellow)}
+
+@media(hover:none){
+.game-card:hover,.play-btn:hover,.action-btn:hover,.option:hover{
+transform:none;
+}
+button:active{transform:scale(.96);filter:brightness(1.2)}
+}
+
+@media(max-width:768px){
+.game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:480px){
+header{justify-content:center;text-align:center;padding:15px}
+.logo{width:100%}
+.hero h1{font-size:clamp(30px,9vw,40px)}
+.stats{gap:18px}
+.game-grid{grid-template-columns:1fr}
+.game-card{padding:20px}
+.game-card p{min-height:auto}
+#gameArea{padding:15px 10px}
+.board{grid-template-columns:repeat(3,min(25vw,85px))}
+}
+
+@media(max-width:350px){
+.hero h1{font-size:28px}
+.stats{gap:12px}
+.stat{font-size:12px}
+.memory-grid{gap:5px}
+}
+
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{
+scroll-behavior:auto!important;
+animation-duration:.01ms!important;
+animation-iteration-count:1!important;
+transition-duration:.01ms!important;
+}
+}
 </style>
 </head>
+
 <body>
-<main class="container">
-<div id="start">
-<div class="logo">🧠🎭</div>
-<h1>তুমি আসলে কেমন মানুষ?</h1>
-<p>নিজেকে কতটা চেনো? 😏<br>চলো, মজার কিছু প্রশ্নের মাধ্যমে তোমার আসল ব্যক্তিত্ব খুঁজে বের করি!</p>
-<div class="rules">
-<strong>📜 খেলার নিয়মাবলি</strong>
-<ul>
-<li>মোট ৮টি মজার প্রশ্নের উত্তর দিতে হবে।</li>
-<li>প্রতিটি প্রশ্নে নিজের পছন্দের উত্তরটি বেছে নাও।</li>
-<li>সৎভাবে উত্তর দাও, চালাকি করলে কিন্তু ধরা পড়ে যাবে! 😂</li>
-<li>সব উত্তর শেষে তোমার ব্যক্তিত্বের মজার ফলাফল দেখতে পাবে।</li>
-<li>সঠিক বা ভুল উত্তর বলে কিছু নেই।</li>
-</ul>
+
+<header>
+<div class="logo">🎮 হাসির আড্ডা</div>
+<div class="creator">Created by Jishan</div>
+</header>
+
+<section class="hero">
+<div class="tag">🔥 বাংলাদেশের মজার গেমিং জোন</div>
+<h1>খেলবে নাকি <span>হারবে?</span> 😂</h1>
+<p>স্বাগতম হাসির আড্ডায়! এখানে আছে মজার মজার গেম, মাথা ঘোরানো চ্যালেঞ্জ আর বিনোদনের বিশাল আয়োজন। সাবধান! খেলতে শুরু করলে উঠতে মন চাইবে না! 🤣</p>
+<button class="main-btn" onclick="goGames()">🎮 চল গেম খেলি!</button>
+<div class="stats">
+<div class="stat"><strong>৬+</strong> মজার গেম</div>
+<div class="stat"><strong>১০০%</strong> বিনোদন</div>
+<div class="stat"><strong>∞</strong> হাসাহাসি</div>
 </div>
-<button class="primary" onclick="begin()">🚀 খেলা শুরু করো</button>
+</section>
+
+<section class="section" id="games">
+<h2 class="section-title">🔥 তোমার পছন্দের গেম বেছে নাও</h2>
+<p class="section-desc">একটা গেম বেছে নাও, তারপর দেখাও তোমার কারিশমা! 😎</p>
+
+<div class="game-grid">
+
+<div class="game-card">
+<div class="game-icon">😂</div>
+<h3>পার্সোনালিটি টেস্ট</h3>
+<p>তুমি আসলে কেমন মানুষ? উত্তর দিলেই জানা যাবে!</p>
+<button class="play-btn" onclick="startGame('personality')">খেলতে চাই</button>
 </div>
 
-<div id="game" class="hidden">
-<div class="small" id="counter">প্রশ্ন ১ / ৮</div>
-<div class="progress"><div class="bar" id="bar"></div></div>
-<div class="question" id="question"></div>
-<div id="options"></div>
-<button class="primary" id="next" onclick="nextQuestion()" disabled>পরবর্তী প্রশ্ন ➜</button>
+<div class="game-card">
+<div class="game-icon">🧠</div>
+<h3>মেমোরি চ্যালেঞ্জ</h3>
+<p>মনে রাখার ক্ষমতা কতটুকু? এবার পরীক্ষা হোক!</p>
+<button class="play-btn" onclick="startGame('memory')">খেলতে চাই</button>
 </div>
 
-<div id="result" class="hidden">
-<div class="logo">🎉</div>
-<h1>তোমার ফলাফল!</h1>
-<div class="result-box">
-<div class="result-emoji" id="emoji"></div>
-<div class="result-title" id="resultTitle"></div>
-<p id="description"></p>
-</div>
-<p id="roast"></p>
-<button class="primary" onclick="share()">📲 ফলাফল শেয়ার করো</button>
-<button class="secondary" onclick="restart()">🔄 আবার খেলো</button>
+<div class="game-card">
+<div class="game-icon">🎯</div>
+<h3>টার্গেট ক্লিক</h3>
+<p>দ্রুত ক্লিক করো! সময় কিন্তু অপেক্ষা করবে না।</p>
+<button class="play-btn" onclick="startGame('click')">খেলতে চাই</button>
 </div>
 
-<div class="footer">Presented by Jishan ❤️</div>
-</main>
+<div class="game-card">
+<div class="game-icon">🔢</div>
+<h3>সংখ্যা ধরো</h3>
+<p>১ থেকে ১০০-এর মধ্যে লুকানো সংখ্যাটি খুঁজে বের করো।</p>
+<button class="play-btn" onclick="startGame('guess')">খেলতে চাই</button>
+</div>
+
+<div class="game-card">
+<div class="game-icon">❌</div>
+<h3>টিক ট্যাক টো</h3>
+<p>বন্ধুর সঙ্গে খেলো এবং জিতে নাও!</p>
+<button class="play-btn" onclick="startGame('ttt')">খেলতে চাই</button>
+</div>
+
+<div class="game-card">
+<div class="game-icon">🤯</div>
+<h3>বাংলা কুইজ</h3>
+<p>নিজের জ্ঞান যাচাই করো মজার মজার প্রশ্নের মাধ্যমে।</p>
+<button class="play-btn" onclick="startGame('quiz')">খেলতে চাই</button>
+</div>
+
+</div>
+</section>
+
+<section id="gameArea">
+<div class="game-head">
+<h2 id="gameTitle">গেম</h2>
+<button class="back-btn" onclick="closeGame()">← ফিরে যাও</button>
+</div>
+<div class="game-content" id="gameContent"></div>
+</section>
+
+<footer>
+<p>❤️ হাসো, খেলো, আনন্দ করো!</p>
+<p>Created by <strong>Jishan</strong></p>
+<p style="font-size:12px">© 2026 হাসির আড্ডা | সর্বস্বত্ব সংরক্ষিত</p>
+</footer>
 
 <script>
-const questions=[
-{q:"১. হঠাৎ তোমার হাতে ১০ লাখ টাকা চলে এলো! কী করবে?",a:[["🛍️ শপিং করে শেষ!","বিলাসী"],["🏦 ব্যাংকে জমাবো","বুদ্ধিমান"],["🍕 বন্ধুদের খাওয়াবো","বন্ধুবৎসল"],["😴 ঘুমিয়ে থাকব","অলস"]]},
-{q:"২. রাত ৩টায় ঘুম আসছে না। কী করবে?",a:[["📱 রিলস দেখব","অলস"],["🤔 জীবনের হিসাব করব","চিন্তাবিদ"],["🍜 কিছু খাব","খাদক"],["🎮 গেম খেলব","বিলাসী"]]},
-{q:"৩. কেউ তোমাকে বলে, তুমি অনেক সুন্দর!",a:[["😎 জানি তো!","আত্মবিশ্বাসী"],["🙈 লজ্জা পাব","লাজুক"],["😂 মিথ্যা বলো না!","রসিক"],["❤️ ধন্যবাদ দেব","ভদ্র"]]},
-{q:"৪. পরীক্ষার আগের রাতে তোমার অবস্থা?",a:[["📚 সারারাত পড়ব","পরিশ্রমী"],["🤲 আল্লাহ ভরসা","ভাগ্যনির্ভর"],["😴 ঘুমাব","অলস"],["👀 বন্ধুর খাতা দেখব","চালাক"]]},
-{q:"৫. তোমার ক্রাশ অনলাইনে এসেছে!",a:[["💬 সঙ্গে সঙ্গে মেসেজ","রোমান্টিক"],["👀 চুপচাপ নজর রাখব","লাজুক"],["😎 পাত্তা দেব না","আত্মবিশ্বাসী"],["😂 স্টোরিতে রিঅ্যাক্ট","চালাক"]]},
-{q:"৬. বন্ধু বলে, চল ঘুরতে যাই!",a:[["🚀 এখনই চল","দুঃসাহসী"],["💰 টাকা আছে?","বুদ্ধিমান"],["😴 পরে যাব","অলস"],["🤝 সবাইকে নিয়ে যাব","বন্ধুবৎসল"]]},
-{q:"৭. তোমাকে কেউ বিরক্ত করলে কী করো?",a:[["😡 রেগে যাই","রাগী"],["😂 হাসি দিয়ে উড়িয়ে দিই","রসিক"],["🤫 চুপ থাকি","লাজুক"],["😈 প্রতিশোধের প্ল্যান","চালাক"]]},
-{q:"৮. নিজের সম্পর্কে তোমার ধারণা কী?",a:[["👑 আমি বস!","আত্মবিশ্বাসী"],["🥰 আমি অনেক ভালো","ভদ্র"],["🤪 আমি একটু পাগল","রসিক"],["🧠 আমি জিনিয়াস","চিন্তাবিদ"]]}
+const content=document.getElementById('gameContent');
+const area=document.getElementById('gameArea');
+const title=document.getElementById('gameTitle');
+
+let timers=[];
+let memoryLock=false;
+
+function clearTimers(){
+timers.forEach(t=>{
+clearInterval(t);
+clearTimeout(t);
+});
+timers=[];
+}
+
+function speak(message){
+if(!('speechSynthesis' in window))return;
+speechSynthesis.cancel();
+const voice=new SpeechSynthesisUtterance(message);
+voice.lang='bn-BD';
+voice.rate=1;
+voice.pitch=1.15;
+speechSynthesis.speak(voice);
+}
+
+const funny=[
+"ওরে বাবা! এত প্রতিভা কোথায় লুকিয়ে রেখেছিলে!",
+"ভাই, মাথা আছে নাকি শুধু চুল আছে? 😂",
+"এই খেলায় তো তুমি আগুন!",
+"এত ভুল করলে গেমও কান্না করবে!",
+"বাহ! আসল খেলোয়াড় হাজির!",
+"কী অবস্থা! মাথা গরম হয়ে গেল নাকি? 🤣"
 ];
-const profiles={
-"বিলাসী":["💎","রাজকীয় বাবু","তোমার জীবনে আরাম-আয়েশই সব! টাকা আসলে খরচের রাস্তা নিজেই খুঁজে নাও।","তোমার মানিব্যাগ তোমাকে দেখে প্রতিদিন কাঁদে! 😂"],
-"বুদ্ধিমান":["🧠","চালাক চতুর","তুমি সবকিছু হিসাব করে করো। তোমার মাথায় সবসময় কয়েকটা প্ল্যান প্রস্তুত থাকে!","তোমাকে ঠকাতে গেলে আগে নিজের বুদ্ধি আপডেট করতে হবে! 🤣"],
-"বন্ধুবৎসল":["🤗","বন্ধুপ্রেমী","বন্ধুদের জন্য তুমি সব করতে পারো। তোমার কাছে বন্ধুত্বই সবচেয়ে বড় সম্পদ!","তোমার বন্ধুরা ভাগ্যবান, তবে তোমার পকেট দুর্ভাগা! 😂"],
-"অলস":["🛌","ঘুমের সম্রাট","কাজ পরে হবে, আগে একটু বিশ্রাম! তোমার জীবনের মূলমন্ত্রই হচ্ছে আরাম।","তোমাকে ডাকতে গেলে অ্যালার্ম ঘড়িরও ছুটি লাগে! 🤣"],
-"চিন্তাবিদ":["🤔","মহাজ্ঞানী দার্শনিক","তোমার মাথায় সবসময় হাজারটা চিন্তা ঘোরে। সাধারণ ব্যাপারেও গভীর দর্শন খুঁজে পাও!","এত চিন্তা করো যে চিন্তাও তোমাকে নিয়ে চিন্তা করে! 😂"],
-"রোমান্টিক":["❤️","প্রেমের রাজা","তোমার হৃদয় অনেক নরম। ভালোবাসার জন্য তুমি সবসময় প্রস্তুত!","তোমার প্রেমের গল্পে নায়ক আছে, শুধু নায়িকার পরিচয় অজানা! 🤣"],
-"লাজুক":["🙈","লাজুক নবাব","তুমি শান্ত স্বভাবের মানুষ। মনের কথা মুখে বলতে একটু সময় লাগে!","তোমার ক্রাশ বুড়ো হয়ে যাবে, তবুও তুমি হাই বলতে পারবে না! 😂"],
-"আত্মবিশ্বাসী":["😎","আত্মবিশ্বাসের বস","তুমি নিজেকে ভালোবাসো এবং নিজের সিদ্ধান্তে বিশ্বাস রাখো!","আয়নার সামনে দাঁড়ালে আয়নাও তোমাকে স্যালুট দেয়! 🤣"],
-"রসিক":["🤪","কমেডির কারখানা","তুমি যেখানে যাও সেখানেই হাসির পরিবেশ তৈরি হয়!","তোমার সিরিয়াস কথাও মানুষ জোকস মনে করে! 😂"],
-"ভদ্র":["🌸","ভদ্রতার রাজপুত্র","তুমি সুন্দর মনের মানুষ। অন্যদের সম্মান করতে জানো!","তোমার মতো ভালো মানুষ দেখে দুষ্টু লোকেরাও লজ্জা পায়! ❤️"],
-"পরিশ্রমী":["🔥","পরিশ্রমী যোদ্ধা","তুমি নিজের লক্ষ্যে পৌঁছাতে পরিশ্রম করতে জানো!","তোমার বিশ্রাম নেওয়ার জন্যও আলাদা একটা পরিকল্পনা লাগে! 😂"],
-"ভাগ্যনির্ভর":["🍀","ভাগ্যের খেলোয়াড়","তুমি বিশ্বাস করো, জীবনে ভাগ্যেরও বড় ভূমিকা আছে!","পড়াশোনার বদলে ভাগ্যের ওপর নির্ভর করলে কিন্তু বিপদ! 🤣"],
-"চালাক":["😈","গোপন মাস্টারমাইন্ড","তুমি পরিস্থিতি বুঝে চাল দিতে জানো। সবাই তোমার পরবর্তী পদক্ষেপ বুঝতে পারে না!","তোমার মাথায় নিশ্চয়ই গোপন ষড়যন্ত্রের মিটিং চলে! 😂"],
-"দুঃসাহসী":["🚀","অ্যাডভেঞ্চার কিং","নতুন অভিজ্ঞতা আর চ্যালেঞ্জ নিতে তুমি ভালোবাসো!","তোমার সঙ্গে ঘুরতে গেলে বীমা করে যাওয়া উচিত! 🤣"],
-"রাগী":["🌋","জ্বলন্ত আগ্নেয়গিরি","তোমার রাগ দ্রুত ওঠে, তবে মনটা হয়তো ততটাই নরম!","তোমার রাগ দেখলে মরিচও মিষ্টি হয়ে যায়! 😂"]
+
+function joke(){
+speak(funny[Math.floor(Math.random()*funny.length)]);
+}
+
+function goGames(){
+document.getElementById('games').scrollIntoView({behavior:'smooth'});
+speak("চলো দেখি কে কত বড় খেলোয়াড়!");
+}
+
+function closeGame(){
+clearTimers();
+if('speechSynthesis' in window)speechSynthesis.cancel();
+area.style.display='none';
+document.getElementById('games').scrollIntoView({behavior:'smooth'});
+}
+
+function show(name,html){
+content.innerHTML=html;
+title.textContent=name;
+area.style.display='block';
+area.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function startGame(type){
+clearTimers();
+memoryLock=false;
+if('speechSynthesis' in window)speechSynthesis.cancel();
+
+const games={
+personality:personality,
+memory:memory,
+click:clickGame,
+guess:guessGame,
+ttt:ticTacToe,
+quiz:quizGame
 };
-let index=0,answers=[],selected=null;
-let audio;
-function sound(freq=500,type="sine"){
-try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();if(audio.state==="suspended")audio.resume();let o=audio.createOscillator(),g=audio.createGain();o.connect(g);g.connect(audio.destination);o.frequency.value=freq;o.type=type;g.gain.setValueAtTime(.12,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.22);o.start();o.stop(audio.currentTime+.23)}catch(e){}
+games[type]();
 }
-function begin(){sound(650);document.getElementById("start").classList.add("hidden");document.getElementById("game").classList.remove("hidden");showQuestion()}
-function showQuestion(){
-selected=null;
-let q=questions[index];
-document.getElementById("counter").textContent=`প্রশ্ন ${index+1} / ${questions.length}`;
-document.getElementById("bar").style.width=(index/questions.length*100)+"%";
-document.getElementById("question").textContent=q.q;
-document.getElementById("next").disabled=true;
-document.getElementById("next").textContent=index===questions.length-1?"ফলাফল দেখো 🎉":"পরবর্তী প্রশ্ন ➜";
-let html="";
-q.a.forEach((a,i)=>html+=`<button class="option" onclick="choose(${i},this)">${a[0]}</button>`);
-document.getElementById("options").innerHTML=html;
+
+// PERSONALITY TEST
+
+const personalityQuestions=[
+{q:"বন্ধু টাকা ধার চাইলে কী করো?",a:["আগে নিজের টাকা বাঁচাই 😂","দিয়ে দিই ❤️","ব্লক করে দিই 🤣"]},
+{q:"রাতে ঘুম না এলে কী করো?",a:["ফোন চালাই 📱","খাবার খুঁজি 🍕","জীবনের চিন্তা করি 😭"]},
+{q:"পরীক্ষার আগের রাতে কী অবস্থা?",a:["বই খুলে বসি 📚","আল্লাহ ভরসা 🤲","কাল পরীক্ষা? 😱"]},
+{q:"প্রেমের প্রস্তাব পেলে?",a:["আগে বায়োডাটা চাই 😎","লজ্জা পাই ❤️","ভাই, সিঙ্গেলই ভালো 😂"]}
+];
+
+function personality(){
+let index=0,points=0;
+
+function render(){
+if(index>=personalityQuestions.length){
+let result=points<=3?
+"তুমি নিরীহ মানুষ! তোমাকে সহজেই বোকা বানানো যায়! 🥹":
+points<=7?
+"তুমি মজার মানুষ! তোমার সঙ্গে আড্ডা জমবে! 😎":
+"তুমি একেবারে কমেডির রাজা! 🤣👑";
+
+show("পার্সোনালিটি রিপোর্ট 😂",
+`<h2>🎉 পরীক্ষা শেষ!</h2>
+<div class="result">${result}</div>
+<button class="action-btn" onclick="personality()">আবার খেলি</button>`);
+speak(result);
+return;
 }
-function choose(i,el){
-selected=i;sound(450+i*100);
-document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
-el.classList.add("selected");
-document.getElementById("next").disabled=false;
+
+let q=personalityQuestions[index];
+
+show("পার্সোনালিটি টেস্ট 😂",
+`<h2>${q.q}</h2>
+<p>প্রশ্ন ${index+1} / ${personalityQuestions.length}</p>
+${q.a.map((a,i)=>`<button class="option" onclick="answerPersonality(${i})">${a}</button>`).join('')}`);
 }
-function nextQuestion(){
-if(selected===null)return;
-answers.push(questions[index].a[selected][1]);
-sound(600);
+
+window.answerPersonality=function(i){
+points+=i;
 index++;
-if(index<questions.length)showQuestion();else showResult();
+render();
+if(index<personalityQuestions.length)joke();
+};
+
+render();
 }
-function showResult(){
-document.getElementById("game").classList.add("hidden");
-document.getElementById("result").classList.remove("hidden");
-let count={};
-answers.forEach(x=>count[x]=(count[x]||0)+1);
-let winner=Object.keys(count).sort((a,b)=>count[b]-count[a])[0];
-let p=profiles[winner];
-document.getElementById("emoji").textContent=p[0];
-document.getElementById("resultTitle").textContent=p[1];
-document.getElementById("description").textContent=p[2];
-document.getElementById("roast").textContent=p[3];
-document.getElementById("bar").style.width="100%";
-confetti();sound(800);
-window.finalResult=`আমার ব্যক্তিত্ব: ${p[1]} ${p[0]}\n${p[2]}\n${p[3]}\nPresented by Jishan`;
+
+// MEMORY GAME
+
+function memory(){
+const icons=['🍎','🍎','🚀','🚀','🐼','🐼','⚽','⚽','🎮','🎮','❤️','❤️','🍕','🍕','🌟','🌟'];
+const cards=icons.sort(()=>Math.random()-.5);
+
+let first=null,moves=0,matched=0;
+
+show("মেমোরি চ্যালেঞ্জ 🧠",
+`<p>একই দুটি ছবি খুঁজে বের করো!</p>
+<p>চাল: <strong id="moves">0</strong></p>
+<div class="memory-grid" id="memoryGrid"></div>
+<div id="memoryResult" class="result"></div>`);
+
+const grid=document.getElementById('memoryGrid');
+
+cards.forEach(icon=>{
+const btn=document.createElement('button');
+btn.className='memory-card';
+btn.textContent='?';
+
+btn.onclick=()=>{
+if(memoryLock||btn.classList.contains('matched')||btn.textContent!=='?')return;
+
+btn.textContent=icon;
+
+if(!first){
+first=btn;
+return;
 }
-function confetti(){
-const icons=["🎉","✨","💖","🎊","⭐","😂"];
-for(let i=0;i<35;i++){let e=document.createElement("div");e.className="confetti";e.textContent=icons[Math.random()*icons.length|0];e.style.left=Math.random()*100+"vw";e.style.animationDelay=Math.random()*1.5+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),4500)}
+
+moves++;
+document.getElementById('moves').textContent=moves;
+
+if(first.textContent===icon){
+first.classList.add('matched');
+btn.classList.add('matched');
+matched+=2;
+first=null;
+
+if(matched===16){
+const result=`অভিনন্দন! ${moves} চালে সব মিলিয়েছো! 🎉`;
+document.getElementById('memoryResult').textContent=result;
+speak(result);
 }
-function share(){
-let t=window.finalResult;
-if(navigator.share)navigator.share({title:"আমার ব্যক্তিত্বের ফলাফল",text:t}).catch(()=>copyText(t));
-else copyText(t);
+}else{
+memoryLock=true;
+const previous=first;
+first=null;
+
+const t=setTimeout(()=>{
+previous.textContent='?';
+btn.textContent='?';
+memoryLock=false;
+},750);
+
+timers.push(t);
 }
-function copyText(t){
-if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(()=>alert("ফলাফল কপি হয়েছে! 🎉")).catch(()=>fallback(t));
-else fallback(t);
+};
+
+grid.appendChild(btn);
+});
 }
-function fallback(t){
-let a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove();alert("ফলাফল কপি হয়েছে! 🎉");
+
+// TARGET CLICK
+
+function clickGame(){
+let score=0,time=15,running=false;
+
+show("টার্গেট ক্লিক 🎯",
+`<h2>১৫ সেকেন্ডে কত ক্লিক করতে পারো?</h2>
+<div class="result">স্কোর: <span id="score">0</span></div>
+<h3>সময়: <span id="time">15</span> সেকেন্ড</h3>
+<div id="targetBox">
+<button class="action-btn" id="startClick">শুরু করো!</button>
+</div>
+<div id="clickResult" class="result"></div>`);
+
+document.getElementById('startClick').onclick=()=>{
+if(running)return;
+running=true;
+
+const box=document.getElementById('targetBox');
+box.innerHTML='<button class="target" id="hit">🎯</button>';
+
+document.getElementById('hit').onclick=()=>{
+if(!running)return;
+score++;
+document.getElementById('score').textContent=score;
+document.getElementById('hit').textContent=['🎯','💥','⭐'][score%3];
+};
+
+const timer=setInterval(()=>{
+time--;
+document.getElementById('time').textContent=time;
+
+if(time<=0){
+clearInterval(timer);
+running=false;
+box.innerHTML='';
+
+const msg=`তোমার স্কোর ${score}! ${score>=20?'তুমি তো প্রো! 🏆':'আরেকটু প্র্যাকটিস করো! 😂'}`;
+
+document.getElementById('clickResult').textContent=msg;
+speak("খেলা শেষ! তোমার স্কোর "+score);
 }
-function restart(){index=0;answers=[];selected=null;document.getElementById("result").classList.add("hidden");document.getElementById("game").classList.remove("hidden");showQuestion();sound(500)}
+},1000);
+
+timers.push(timer);
+};
+}
+
+// NUMBER GUESS
+
+function guessGame(){
+let secret=Math.floor(Math.random()*100)+1;
+let attempts=0,finished=false;
+
+show("সংখ্যা ধরো 🔢",
+`<h2>আমি ১ থেকে ১০০-এর মধ্যে একটি সংখ্যা ভেবেছি!</h2>
+<p>তুমি কি সেটা ধরতে পারবে?</p>
+<input class="input" id="guessInput" type="number" min="1" max="100" placeholder="সংখ্যা লেখো">
+<br>
+<button class="action-btn" onclick="checkGuess()">চেক করো</button>
+<div id="guessResult" class="result"></div>
+<p>চেষ্টা: <span id="attempts">0</span></p>
+<button class="action-btn" onclick="guessGame()">নতুন খেলা</button>`);
+
+window.checkGuess=function(){
+if(finished)return;
+
+const input=document.getElementById('guessInput');
+const n=Number(input.value);
+
+if(!Number.isInteger(n)||n<1||n>100){
+document.getElementById('guessResult').textContent="১ থেকে ১০০-এর মধ্যে সংখ্যা দাও!";
+return;
+}
+
+attempts++;
+document.getElementById('attempts').textContent=attempts;
+
+const result=document.getElementById('guessResult');
+
+if(n===secret){
+finished=true;
+result.textContent=`সঠিক! ${attempts} চেষ্টায় ধরেছো! 🏆`;
+speak("অভিনন্দন! তুমি জিতে গেছো!");
+}else{
+result.textContent=n<secret?"আরো বড় সংখ্যা ভাবো! ⬆️":"আরো ছোট সংখ্যা ভাবো! ⬇️";
+}
+input.value='';
+};
+}
+
+// TIC TAC TOE
+
+function ticTacToe(){
+let board=Array(9).fill('');
+let turn='X',ended=false;
+
+const wins=[
+[0,1,2],[3,4,5],[6,7,8],
+[0,3,6],[1,4,7],[2,5,8],
+[0,4,8],[2,4,6]
+];
+
+show("টিক ট্যাক টো ❌⭕",
+`<h2>দুজন খেলোয়াড়ের খেলা!</h2>
+<p>X এবং O দিয়ে খেলো।</p>
+<h3 id="turnText">এখন X-এর পালা</h3>
+<div class="board" id="board"></div>
+<div class="result" id="tttResult"></div>
+<button class="action-btn" onclick="ticTacToe()">আবার খেলো</button>`);
+
+const boardEl=document.getElementById('board');
+
+board.forEach((_,i)=>{
+const btn=document.createElement('button');
+btn.className='cell';
+
+btn.onclick=()=>{
+if(board[i]||ended)return;
+
+board[i]=turn;
+btn.textContent=turn;
+
+const win=wins.find(line=>line.every(pos=>board[pos]===turn));
+
+if(win){
+ended=true;
+document.getElementById('tttResult').textContent=`🎉 ${turn} জিতেছে! অভিনন্দন!`;
+speak(turn+" জিতে গেছে!");
+}else if(board.every(Boolean)){
+ended=true;
+document.getElementById('tttResult').textContent="ম্যাচ ড্র! দুজনেই সমান! 🤝";
+}else{
+turn=turn==='X'?'O':'X';
+document.getElementById('turnText').textContent=`এখন ${turn}-এর পালা`;
+}
+};
+
+boardEl.appendChild(btn);
+});
+}
+
+// BANGLA QUIZ
+
+const questions=[
+{q:"বাংলাদেশের জাতীয় ফুল কোনটি?",a:["গোলাপ","শাপলা","জবা","সূর্যমুখী"],c:1},
+{q:"বাংলাদেশের রাজধানী কোনটি?",a:["চট্টগ্রাম","খুলনা","ঢাকা","রাজশাহী"],c:2},
+{q:"বাংলাদেশের জাতীয় ফল কোনটি?",a:["আম","কাঁঠাল","লিচু","জাম"],c:1},
+{q:"২১ ফেব্রুয়ারি কী দিবস?",a:["বিজয় দিবস","স্বাধীনতা দিবস","শহীদ দিবস","শিশু দিবস"],c:2},
+{q:"বাংলাদেশের জাতীয় পশু কোনটি?",a:["হাতি","রয়েল বেঙ্গল টাইগার","হরিণ","সিংহ"],c:1}
+];
+
+function quizGame(){
+let index=0,score=0,answered=false;
+
+function render(){
+answered=false;
+
+if(index>=questions.length){
+const msg=`তুমি ${questions.length}টির মধ্যে ${score}টি সঠিক উত্তর দিয়েছো!`;
+
+show("কুইজের ফলাফল 🤯",
+`<h2>🏆 পরীক্ষা শেষ!</h2>
+<div class="result">${msg}</div>
+<button class="action-btn" onclick="quizGame()">আবার খেলো</button>`);
+
+speak(msg);
+return;
+}
+
+const q=questions[index];
+
+show("বাংলা কুইজ 🤯",
+`<p>প্রশ্ন ${index+1} / ${questions.length}</p>
+<h2>${q.q}</h2>
+${q.a.map((a,i)=>`<button class="option" onclick="quizAnswer(${i})">${a}</button>`).join('')}
+<div class="result" id="quizResult"></div>`);
+}
+
+window.quizAnswer=function(choice){
+if(answered)return;
+answered=true;
+
+const q=questions[index];
+const buttons=content.querySelectorAll('.option');
+buttons.forEach(b=>b.disabled=true);
+
+const correct=choice===q.c;
+if(correct)score++;
+
+document.getElementById('quizResult').textContent=
+correct?"একদম সঠিক! বাহ! 🎉":`ভুল হয়েছে! সঠিক উত্তর: ${q.a[q.c]}`;
+
+speak(correct?"বাহ! সঠিক উত্তর!":"আহারে! ভুল হয়ে গেছে!");
+
+const t=setTimeout(()=>{
+index++;
+render();
+},1200);
+
+timers.push(t);
+};
+
+render();
+}
+
 </script>
 </body>
 </html>
